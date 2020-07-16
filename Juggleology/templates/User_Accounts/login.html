@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block mainContent %}
+<head><title>Login - Juggleology</title></head>
+
+{{ status }}<!--output json responses generated in views.py-->
+	
+	
+<!--form for logging in-->
+<form id="loginForm" onkeypress="return event.keyCode != 13">
+	{% csrf_token %}
+	<h2>Login</h2>
+	<p><i>Please login to enjoy the full experience!</i></p>
+	
+	<div class="form-group">
+		<div class="col"><label for="txtUsernameLog">Username: </label></div>
+		<div class="col">
+			<input type="text" name="usernameLog" id="txtUsernameLog" maxlength="30" 
+			onchange="removeForbidden(this)" class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col"><label for="txtPasswordLog">Password: </label></div>
+		<div class="col">
+			<input type="password" name="passwordLog" id="txtPasswordLog" maxlength="30" 
+			onchange="removeForbidden(this)" class="form-control" />
+		</div>
+	</div>
+	
+	<div class="form-group"><div class="col">
+		<input type="button" onclick="validateLogin()" value="Login" id="submitForm" class="btn btn-primary mb-2" /><br />
+    <b><div id="processing"></div></b> <!--output temporary message in case server is running slow-->
+		<p><a href="/Juggleology/register">New to Juggleology? Register now!</a></p> 
+	</div></div>
+</form>
+
+<!--importing jquery and boostrap-->
+<script type="text/javascript" src="/static/JQuery/popper.min.js/"></script>
+<script type="text/javascript" src="/static/JQuery/jquery-3.4.1.min.js/"></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js/"></script>
+
+<script type="text/javascript" src="/static/scripts/standard_ajax_functions.js/"></script>
+<script type="text/javascript" src="/static/scripts/validate_input.js/"></script>
+<script type="text/javascript" src="/static/scripts/user_accounts/progress_login.js/"></script>
+
+{% endblock %}

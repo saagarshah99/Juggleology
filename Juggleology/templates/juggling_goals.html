@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block mainContent %}
+<title>Goals - Juggleology</title>
+<h2>Juggling Goals</h2>
+
+<input type="button" id="emergencyButton" class="btn btn-success" value="Go to trick directory" 
+onclick="window.location.href='/Juggleology/view-tricks'" /><br /><br />
+
+<!--goals fetched from database and listed here-->
+<h3>View Goal List</h3>
+<p>Check/uncheck existing goals or add a new one...</p>
+<div class="menu"><ul id="goalList"></ul></div>
+
+<h3>Add New Goal</h3>
+Go to your <a href="/Juggleology/view-tricks">trick directory</a> 
+to set goals for specific tricks of yours...<br />
+
+<span id="goalPrompt"></span><!--potential alerts or errors ouputted here-->
+
+<!--form for adding/setting goals-->
+<form name="frmAddGoal" id="addGoalForm" method="POST" onkeypress="return event.keyCode != 13">
+{% csrf_token %}
+
+	<table class="table-responsive" cellpadding="5">
+		<tr>
+			<td><label>Goal</label></td>
+			<td>
+				<input type="text" name="txtAddGoal" id="addGoalField" maxlength="200" 
+				onchange="removeForbidden(this)" class="form-control" placeholder="Add Goal" />
+			</td>
+		</tr>
+		<tr>
+			<td><label>Date to achieve by</label></td>
+			<td><input type="date" name="txtDateToAchieveBy" id="achieveByField" class="form-control" /></td>
+		</tr>
+		<tr><td colspan="2">
+			<input type="button" class="btn btn-primary form-control" onclick="validateGoals()" value="Set Goal" />
+			<br /><b><div id="submitting"></div></b> <!--output temporary message in case server is running slow-->
+		</td></tr>
+	</table>
+</form><br />
+
+<!--importing jquery and boostrap-->
+<script type="text/javascript" src="/static/JQuery/popper.min.js/"></script>
+<script type="text/javascript" src="/static/JQuery/jquery-3.4.1.min.js/"></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js/"></script>
+
+<!--generic javascript functions-->
+<script type="text/javascript" src="/static/scripts/validate_input.js"></script>
+<script type="text/javascript" src="/static/scripts/standard_ajax_functions.js"></script>
+
+<!--juggling goal ajax and validation functions (javascript)-->
+<script type="text/javascript" src="/static/scripts/goals/validate_goals.js"></script> 
+<script type="text/javascript" src="/static/scripts/goals/receive_goal.js"></script> 
+<script type="text/javascript" src="/static/scripts/goals/view_goals.js"></script> 
+<script type="text/javascript" src="/static/scripts/goals/add_goals.js"></script>
+<script type="text/javascript" src="/static/scripts/goals/delete_goal.js"></script>
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block mainContent %}
+
+<title>Create Event - Juggleology</title>
+
+<h2>Events</h2>
+<input type="button" id="emergencyButton" class="btn btn-success" value="View Events" 
+onclick="window.location.href='/Juggleology/view-events'" /><br /><br />
+	
+<!--form for creating events with validation and submission via ajax-->
+<form id="createEvent" name="frmCreateEvent" onkeypress="return event.keyCode != 13" method="POST">
+{% csrf_token %}
+	
+	<!--event name-->
+	<div class="form-group">
+		<div class="col"><label for="txtEventName">Event Name:</label></div>
+		<div class="col">
+			<input type="text" name="eventName" id="txtEventName" maxlength="200" 
+			onchange="removeForbidden(this)" class="form-control" />
+		</div>
+	</div>	
+	
+	<!--event genre-->
+	<div class="form-group">
+		<div class="col">
+			<label for="cmbGenres">Genre:</label>
+		</div>
+		<div class="col">
+			<!--character limit in models currently set to 100-->
+			<select name="genre" id="cmbGenres" class="custom-select my-1 mr-sm-2">
+				<option value="Meetup">Meetup</option>
+				<option value="Convention/Festival">Convention/Festival</option>
+				<option value="Talk">Talk</option>
+				<option value="Competitive Sports">Competitive Sports</option>
+				<option value="Other">Other</option>
+			</select>
+		</div>
+	</div>
+	
+	<!-- Number of tickets -->
+	<div class="form-group">
+			<div class="col">
+			<label for="txtEventName">Number of Spaces Available:</label>
+		</div>
+		<div class="col">
+			<input type="text" name="totalTickets" id="txtNumberOfTickets" min="1"
+			maxlength="10" onkeypress="numbersOnly(event)" value="50" class="form-control"
+			onchange="if(this.value < 1 || isNaN(this.value)) {this.value=1}" />
+		</div>
+	</div>
+	
+	<!-- cost of tickets -->
+	<div class="form-group">
+		<div class="col">
+			<label for="txtCostOfTickets">Cost Per Ticket (£):</label>
+		</div>
+		<div class="col">
+			<input type="text" name="ticketCost" id="txtTicketCost" class="form-control"
+			maxlength="15" onkeypress="numbersOnly(event)" placeholder="Enter £0 if free"
+			onchange="if(isNaN(this.value)){this.value=''}"  />
+		</div>
+	</div>
+	
+	<!--event start date and time-->
+	<div class="form-group">
+		<div class="col">
+			<label for="txtEventDate">Starts:</label>
+		</div>
+		<div class="col">
+			<input type="date" name="eventDate" id="txtEventDate" class="form-control" required />
+			<input type="time" name="eventStartTime" id="txtEventStartTime" class="form-control" value="17:00" required />
+		</div>
+	</div>
+	
+	<!--event end date and time-->
+	<div class="form-group">
+		<div class="col">
+			<label for="txtEventEndDate">Ends:</label>
+		</div>
+		<div class="col">
+			<input type="date" name="eventEndDate" id="txtEventEndDate" class="form-control" required />
+			<input type="time" name="eventEndTime" id="txtEventEndTime" class="form-control" value="18:00" required />
+		</div>
+	</div>
+		
+	<!--event location-->
+	<div class="form-group">
+		<div class="col">
+			<label for="searchBox">Location:</label>
+		</div>
+		<div class="col">
+			<div id='printoutPanel'></div>
+			<div id='searchBoxContainer'>
+				<input type='text' name="eventLocation" id='txtLocationSearch' maxlength="300"
+				class="form-control" onchange="removeForbidden(this)" />
+			</div>			
+		</div>
+	</div>
+	
+	
+	<!--event description and submitting event-->
+	<div class="form-group">
+		<div class="col">
+			<label for="txtDescription">Description:</label>
+		</div>
+		<div class="col">
+			<textarea name="descriptionText" id="txtEventDescription" maxlength="400"
+			class="form-control" onchange="removeForbidden(this)"></textarea>
+		</div>
+	</div>
+	
+	<!--add the event to the database - eventually perform an ajax call-->
+	<div class="form-group"><div class="col">
+		<input type="button" value="Create Event" onclick="validateCreateEvents()" 
+		class="btn btn-primary mb-2" /><br />
+    <b><div id="submitting"></div></b> <!--output temporary message in case server is running slow-->		
+	</div></div>	
+</form>
+
+<!--importing jquery and boostrap-->
+<script type="text/javascript" src="/static/JQuery/popper.min.js/"></script>
+<script type="text/javascript" src="/static/JQuery/jquery-3.4.1.min.js/"></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js/"></script>
+
+<script type="text/javascript">
+	//load current date for start and end time fields
+	document.getElementById('txtEventDate').valueAsDate = new Date();
+	document.getElementById('txtEventEndDate').valueAsDate = new Date();
+</script>
+
+<!--importing event ajax and validation javascript-->
+<script type="text/javascript" src="/static/scripts/events/add_events.js/"></script>
+<script type="text/javascript" src="/static/scripts/events/validate_create_events.js/"></script>
+<script type="text/javascript" src="/static/scripts/validate_input.js/"></script>
+
+{% endblock %}

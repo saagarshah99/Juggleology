@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block mainContent %}
+<title>Add Trick - Juggleology</title>
+<h2>Juggling Trick Directory</h2>
+
+<input type="button" id="emergencyButton" class="btn btn-success" value="View Tricks" 
+onclick="window.location.href='/Juggleology/view-tricks'" /><br /><br />
+
+<!--form for adding new tricks to the directory (in database) with basic validation-->
+<form class="frmAddTrick" onkeypress="return event.keyCode != 13" method="POST">
+{% csrf_token %}
+	<!--trick name field-->
+	<div class="form-group">
+		<div class="col">
+			<label for="trickName">Trick Name:</label>
+		</div>
+		<div class="col">
+			<input type="text" id="trickName" name="nameOfTrick" onchange="removeForbidden(this)"
+			maxlength="200" class="form-control" />
+		</div>
+	</div>
+		
+	<!--trick description field-->
+	<div class="form-group">
+		<div class="col">
+			<label for="trickDescription">Trick Description:</label>
+		</div>
+		<div class="col">
+			<textarea id="trickDescription" name="descriptionOfTrick" maxlength="400" 
+			onchange="removeForbidden(this)" class="form-control"></textarea>
+		</div>
+	</div>
+	
+	<!--number of objects field-->	
+	<div class="form-group">
+		<div class="col">
+			<label for="numberObjects">Number of Objects:</label>
+		</div>
+		<div class="col">
+			<input type="text" id="numberObjects" name="objectCount" value="3" onkeypress="numbersOnly(event)"
+			onchange="if(isNaN(this.value)){this.value=''}" maxlength="3" class="form-control" />
+		</div>
+	</div>
+
+	<!--prop category field-->
+	<div class="form-group">
+		<div class="col">
+			<label for="propCategory">Prop Category:</label>
+		</div>		
+		<div class="col">
+			<!--character limit in models set to 100 currently-->
+			<select id="propCategory" name="propType" class="custom-select my-1 mr-sm-2">
+				<option value="Balls">Balls</options>
+				<option value="Clubs">Clubs</options>
+				<option value="Rings">Rings</options>
+				<option value="Poi">Poi</options>
+				<option value="Diablo">Diablo</options>
+				<option value="Hula Hoops">Hula Hoops</options>
+				<option value="Kendama">Kendama</options>
+				<option value="Devil Sticks">Devil Sticks</options>
+				<option value="Contact Juggling">Contact Juggling</options>
+				<option value="Other">Other</options>
+			</select>
+		</div>		
+	</div>	
+
+	<!--Difficulty Level field-->
+	<div class="form-group">
+		<div class="col">
+			<label for="difficultyLevel">Difficulty Level:</label>
+		</div>		
+		<div class="col">
+			<select id="difficultyLevel" name="levelOfDifficulty" class="custom-select my-1 mr-sm-2">
+				<option value="Beginner">Beginner</options>
+				<option value="Intermediate">Intermediate</options>
+				<option value="Advanced">Advanced</options>
+			</select>
+		</div>		
+	</div>	
+	
+	<div class="form-group"><div class="col">
+		<input type="button" id="btnAdd" class="btn btn-primary mb-2" onclick="validateAddTricksForm()" value="Add Trick" />
+		<br /><b><div id="adding"></div></b> <!--output temporary message in case server is running slow-->
+	</div></div>
+</form>
+
+<!--importing jquery and boostrap-->
+<script type="text/javascript" src="/static/JQuery/popper.min.js/"></script>
+<script type="text/javascript" src="/static/JQuery/jquery-3.4.1.min.js/"></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js/"></script>
+
+<!--importing trick directory ajax and validation scripts-->
+<script type="text/javascript" src="/static/scripts/trick_directory/add_tricks.js"></script>
+<script type="text/javascript" src="/static/scripts/validate_input.js"></script>
+<script type="text/javascript" src="/static/scripts/trick_directory/validate_directory_forms.js"></script>
+<script type="text/javascript" src="/static/scripts/standard_ajax_functions.js"></script>
+
+{% endblock %}

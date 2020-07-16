@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block mainContent %}
+<head>
+	<title>Search Results - Juggleology</title>
+</head>
+
+<!--display search results from cookie here-->
+<div id="searchResults"></div> 
+
+<!--importing jquery and boostrap-->
+<script type="text/javascript" src="/static/JQuery/popper.min.js/"></script>
+<script type="text/javascript" src="/static/JQuery/jquery-3.4.1.min.js/"></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js/"></script>
+<script type="text/javascript" src="/static/JQuery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/static/JQuery/jquery-ui.js"></script>
+
+<script type="text/javascript" src="/static/scripts/searching.js/"></script>
+<script type="text/javascript">
+	loadSearchCookies(); //retrieve search results cookie once redirected to this page
+		
+	//search result styles
+	$("h6").attr('class', "card bg-info text-white").css('padding', "5px");
+	$(".achieved").css('color', "#0f0");
+	$(".notachieved").css('color', "#f00");	
+</script>
+
+{% endblock %}

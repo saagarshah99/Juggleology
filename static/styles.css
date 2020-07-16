@@ -1,0 +1,236 @@
+/**********************************************GENERIC STYLES**********************************************/
+
+body, input, select {font-family: 'Roboto', sans-serif;} /*consistent font family*/
+
+/*styles for dark mode when toggled*/
+[data-theme="dark"] table, [data-theme="dark"]
+{
+	background-color: #2e3436; 
+	color: #eee;
+}
+[data-theme="dark"] .bg-light {background-color: #333;}
+[data-theme="dark"] .bg-white {background-color: #000;}
+[data-theme="dark"] .bg-black {background-color: #eee;}
+
+/*styles for divisions*/
+#container {padding: 10px;}
+
+/*a basic panel of text to make certain pieces of information stand out to the user*/
+.basicText
+{
+	color: #9c0000;
+	border: 3px solid #000;
+	padding: 5px;
+}
+
+/*styles for when a particular details section is active*/
+details[open] summary
+{
+	color: #19b6ff;
+	font-weight: bold;
+	font-size: 120%;
+}
+
+/*minimum and maximum height for text areas*/
+textarea
+{
+	min-height: 100px;
+	height: 100px;
+	max-height: 200px;
+}
+
+/*styles for a button that might be required at the beginning of certain pages*/
+#emergencyButton:hover {background: #00f;}
+
+/*importing an fadeEffect animation from the webkit framework*/
+@-webkit-keyframes fadeEffect 
+{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+
+/*rules for  reponsive design (when the screen size is 960px or less) - most is being handled by bootstrap*/
+@media screen and (max-width: 961px) 
+{
+	.responsiveImage
+	{
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+/*styles for the slideshow in the image slider*/
+#imageSlider img 
+{
+	width: 70%;
+	height: 70%;
+	border-radius: 15px;
+	border: 5px solid #000;
+}
+/*styles for the buttons in the image slider*/
+#imageSlider>.btn 
+{
+	width: 50px;
+	height: 50px;	
+	border-radius: 15px;
+	font-size: 20px;
+}
+#imageSlider>#previousButton {background-color: blue;}
+#imageSlider>#nextButton {background-color: red;}
+
+
+
+
+
+
+
+/***************************************SITESWAP SIMULATOR STYLES***************************************/
+
+/*hovering over images and revealing text --> these have links pointing to other pages/sections*/
+.hoverArea {position: relative; width: auto;}
+.imageToHover {display: block;}
+.overlay 
+{
+  position: absolute;
+  opacity: 0; /*not visible by default (until hovered over)*/
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: .5s ease;
+  background-color: #000;
+}
+.hoverArea:hover .overlay {opacity: 0.7;}
+.hoverText 
+{
+  color: #fff;
+  font-weight: ;
+  font-size: ;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+/*styles for labels in simulator form*/
+#simulatorFormStyles label, #patternExamplesTitle {font-weight: bold; color: red;}
+	
+/*styles for the canvas in which the animations are displayed and some controls*/
+#myAnimator 
+{
+	border: 0px solid #0a0;
+	height: auto;
+}
+#myAnimator, #figNumObjects, #controlsNearSimulator {width: 50%;}
+
+#pauseSimulatorButton, #resumeSimulatorButton
+{
+	text-align: center;
+	width: 20%;
+	padding: 0;
+}
+
+
+
+
+
+
+
+/*******************************************JUGGLING GOALS STYLES*******************************************/
+
+.menu {overflow: hidden; display: inline-block;}
+.achieveByDateStyle {color: #19b6ff; font-weight: bold;} /*date for each goal*/
+
+/*the whole section of the menu/goal list*/
+#goalList {margin: 0; padding: 10px 20px;}
+
+/*each item in the list*/
+#goalList li
+{
+	list-style-type: none;
+	padding: 5px 0;
+	font-size: 16px;
+}
+
+#goalList li input[type="checkbox"] {display: none;} /*we'not displaying default checkbox for each item*/
+
+/*each actual goal in the list (not just the list item)*/
+#goalList li span.goalListItem
+{
+	position: relative;
+	display: inline-block; /*keep text text aligned with the actual box*/
+	overflow: hidden;
+	
+	transition: 0.5s;
+	transition-delay: 0.5s; 
+}
+
+/*the text after the goal has been checked*/
+#goalList li input[type="checkbox"]:checked ~ span.goalListItem 
+{
+	color: #ccc;
+}
+
+/*styles for before the goal is checked*/
+#goalList li span.goalListItem:before
+{
+	position: absolute;
+	left: -100%; /*cross out from left to right*/
+	transition: 0.5s;
+	transition-delay: 0.5s;
+}
+#goalList li input[type="checkbox"]:checked ~ span.goalListItem:before {left: 100%; transition-delay: 0;}
+
+/*styles for after the goal is checked - line going through middle of entire goal*/
+#goalList li span.goalListItem:after
+{
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0;
+	background: #000; /*colour of the line that crosses the goal out*/
+	width: 100%;
+	height: 2px;
+	transform-origin: left; /*where the line starts travelling from*/
+	transform: scaleX(0);
+	transition: 0.5s;
+	transition-delay: 0;
+}
+
+/*fading effect when the goal is being checked*/
+#goalList li input[type="checkbox"]:checked ~ span.goalListItem:after
+{
+	transform: scaleX(1);
+	transition-delay: 0.5s;
+}
+
+/*using a icon to mimic the checked effect instead of the default checkbox (which is hidden)*/
+#goalList li span.icon
+{
+	position: relative;
+	top: -3px;
+	left: 0; /*right at the beginning of the goal line*/
+	width: 18px;
+	height: 18px;
+	box-sizing: border-box; /*mimicing shape and style of checkbox*/
+	border: 1px solid #262626;
+	display: inline-block;
+	margin-right: 5px; /*distance from goal text*/
+	overflow: hidden;
+}
+
+/*the x fades into the box from top to middle once checked*/
+#goalList li span.icon:before
+{
+	content: 'x'; /*mimic checkbox effect*/
+	position: absolute;
+	top: -5px;
+	left: 4px;
+	transform: translateY(-100%); 
+	transition: 0.5s;
+}
+#goalList li input[type="checkbox"]:checked ~ span.icon:before {transform: translateY(0);}
+
+

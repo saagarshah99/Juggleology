@@ -1,0 +1,279 @@
+{% extends 'base.html' %}
+
+{% block mainContent %}
+<head>
+	<title>Mathematics of Juggling - Juggleology</title>
+	<style>
+		/*centered images in siteswap number representation table*/
+		#tblSiteswapRepresentation img {display: block;	margin-left: auto; margin-right: auto;}		
+	</style>
+	
+</head>
+
+<!--introduction to this section-->
+<h2>Mathematics of Juggling</h2>
+
+<!--details section for purpose of siteswap-->
+<details open>
+	<summary><b>What is the purpose of siteswap?</b></summary><br />
+	<table cellpadding="5" class="table table-responsive">
+		<tr>
+			<th>Recording tricks logically</th>
+			<td>Which allows us to pass tricks around the world because mathematics is a universal language.</td>			
+		</tr>
+		
+		<tr>
+			<th>Creating/discovering new tricks</th>
+			<td><ul>
+				<li>Breaking complicated tricks into simpler versions</li>		
+				<li>Finding more complex ways of doing things you already know</li>		
+			</ul></td>			
+		</tr>
+		
+		<tr>
+			<th>Describing what throw to do</th>
+			<td><ul>
+				<li>When teaching a trick</li>		
+				<li>When passing objects around with a partner/group</li>		
+			</ul></td>			
+		</tr>		
+	</table><br />
+</details>
+
+<!--details section for the different types of the throws-->
+<details>
+<summary><b>What are the different types of throws?</b></summary><br />
+	<p class="basicText">Each trick is denoted using a sequence of numbers, whereby each digit 
+	represents a different throw in the pattern. The table below outlines what each digit (siteswap number) 
+	represents...</p>
+
+	<p>Patterns are mathematically <a href="javascript: passSiteswap(3)">
+	continuous and infinite</a>.</p>
+
+	<p>Odd number = opposite hand (<a href="javascript: passSiteswap(1)">cascade</a>).</p>
+
+	<p>Even number = same hand (<a href="javascript: passSiteswap(4)">fountain</a>).</p>
+
+	<table id="tblSiteswapRepresentation" class="table table-responsive">
+		<tr>
+			<td style="vertical-align: middle;">
+				<h5 id="siteswap1"><a href="javascript: passSiteswap(1)">Siteswap 1</a></h5>
+				<ul>
+					<li>This does not involve throwing the ball up.</li>
+					<li>
+						You essentially pass the ball to the <i><b>other side</b></i> in a straight line.
+					</li>
+				</ul>
+			</td>
+			<td style="vertical-align: middle;"><a href="javascript: passSiteswap(1)">
+				<div class="hoverArea">
+					<img src="/static/images/siteswaps/siteswap1.png" class="img-fluid imageToHover" />
+					<div class="overlay">
+						<div class="hoverText">View Siteswap 1</div>
+					</div>
+				</div>
+			</a></td>
+		</tr>
+		
+		<tr>
+			<td style="vertical-align: middle;">
+				<h5 id="siteswap2"><a href="javascript: passSiteswap(2)">Siteswap 2</a></h5>
+				<ul>
+					<li>The ball stays on the <b><i>same side</i></b>.</li>
+					<li>You CAN throw the up a tiny bit.</li>
+					<li>Usually represents keeping the ball IN your hand while you do something else with the other.</li>
+				</ul>
+			</td>
+			<td style="vertical-align: middle;"><a href="javascript: passSiteswap(2)">
+				<div class="hoverArea">
+					<img src="/static/images/siteswaps/siteswap2.png" class="img-fluid imageToHover" />
+					<div class="overlay">
+						<div class="hoverText">View Siteswap 2</div>
+					</div>
+				</div>
+			</a></td>
+		</tr>
+		
+		<tr>
+			<td style="vertical-align: middle;">
+				<h5 id="siteswap3"><a href="javascript: passSiteswap(3)">Siteswap 3</a></h5>
+				<ul>
+					<li>Involves throwing ball <b><i>across</i></b> at roughly eye level.</li>
+					<li>Represents the height of a basic 3 ball pattern (<b><i>cascade</i></b>).</li>
+				</ul>
+			</td>
+			<td style="vertical-align: middle;"><a href="javascript: passSiteswap(3)">
+				<div class="hoverArea">
+					<img src="/static/images/siteswaps/siteswap3.png" class="img-fluid imageToHover" />
+					<div class="overlay">
+						<div class="hoverText">View Siteswap 3</div>
+					</div>
+				</div>
+			</a></td>
+		</tr>
+		
+		<tr>
+			<td style="vertical-align: middle;">
+				<h5 id="siteswap4"><a href="javascript: passSiteswap(4)">Siteswap 4</a></h5>
+				<ul>
+					<li>Higher version of siteswap 2 whereby the balls actually DO leave your hands.</li>
+					<li>Usually above eye level.</li>
+					<li>
+						Height you would throw the balls in the 4 ball <b><i>fountain</i></b> 
+						(most basic 4 ball pattern).
+					</li>
+				</ul>
+			</td>
+			<td style="vertical-align: middle;"><a href="javascript: passSiteswap(4)">
+				<div class="hoverArea">
+					<img src="/static/images/siteswaps/siteswap4.png" class="img-fluid imageToHover" />
+					<div class="overlay">
+						<div class="hoverText">View Siteswap 4</div>
+					</div>
+				</div>
+			</a></td>
+		</tr>
+		
+		<tr>
+			<td style="vertical-align: middle;">
+				<h5 id="siteswap5"><a href="javascript: passSiteswap(5)">Siteswap 5</a></h5>
+				<p>Higher version of siteswap 3 (essentially at 5 ball cascade height).</p>
+			</td>
+			<td style="vertical-align: middle;"><a href="javascript: passSiteswap(5)">
+				<div class="hoverArea">
+					<img src="/static/images/siteswaps/siteswap5.png" class="img-fluid imageToHover" />
+					<div class="overlay">
+						<div class="hoverText">View Siteswap 5</div>
+					</div>
+				</div>
+			</a></td>
+		</tr>
+		
+		<tr>
+			<td style="vertical-align: middle;">
+				<h5 id="siteswap6"><a href="javascript: passSiteswap(6)">Siteswap 6</a></h5>
+				<p>Higher version of siteswap 4 (essentially at 6 ball fountain height).</p>
+			</td>
+			<td style="vertical-align: middle;"><a href="javascript: passSiteswap(6)">
+				<div class="hoverArea">
+					<img src="/static/images/siteswaps/siteswap6.png" class="img-fluid imageToHover" />
+					<div class="overlay">
+						<div class="hoverText">View Siteswap 6</div>
+					</div>
+				</div>
+			</a></td>
+		</tr>
+		
+		<tr>
+			<td style="vertical-align: middle;">
+				<h5 id="siteswap7"><a href="javascript: passSiteswap(7)">Siteswap 7</a></h5>
+				<p>Higher version of siteswap 5 (essentially at 7 ball cascade height).</p>
+			</td>
+			<td style="vertical-align: middle;"><a href="javascript: passSiteswap(7)">
+				<div class="hoverArea">
+					<img src="/static/images/siteswaps/siteswap7.png" class="img-fluid imageToHover" />
+					<div class="overlay">
+						<div class="hoverText">View Siteswap 7</div>
+					</div>
+				</div>
+			</a></td>
+		</tr>
+		
+		<tr>
+			<td style="vertical-align: middle;">
+				<h5 id="siteswap8"><a href="javascript: passSiteswap(8)">Siteswap 8</a></h5>
+				<p>Higher version of siteswap 6 (essentially at 8 ball fountain height).</p>
+			</td>
+			<td style="vertical-align: middle;"><a href="javascript: passSiteswap(8)">
+				<div class="hoverArea">
+					<img src="/static/images/siteswaps/siteswap8.png" class="img-fluid imageToHover" />
+					<div class="overlay">
+						<div class="hoverText">View Siteswap 8</div>
+					</div>
+				</div>
+			</a></td>
+		</tr>
+		
+		<tr>
+			<td style="vertical-align: middle;">
+				<h5 id="siteswap9"><a href="javascript: passSiteswap(9)">Siteswap 9</a></h5>
+				<p>Higher version of siteswap 7 (essentially at 9 ball cascade height).</p>
+			</td>
+			<td style="vertical-align: middle;"><a href="javascript: passSiteswap(9)">
+				<div class="hoverArea">
+					<img src="/static/images/siteswaps/siteswap9.png" class="img-fluid imageToHover" />
+					<div class="overlay">
+						<div class="hoverText">View Siteswap 9</div>
+					</div>
+				</div>
+			</a></td>
+		</tr>
+		
+		<tr>
+			<td style="vertical-align: middle;">
+				<h5 id="siteswapA">Siteswap A</h5>
+				<ul>
+					<li>We essentially use a hexadecimal system – once we reach double digits, we start to use letters.</li>
+					<li>Higher version of siteswap 8 (essentially at 10 ball fountain height).</li>
+				</ul>
+			</td>
+			<td style="vertical-align: middle;"><img src="/static/images/siteswaps/siteswapA.png" /></td>
+		</tr>
+	</table><br />
+
+	<p>It can be hard to visualise these patterns from a still image, therefore <a href="/Juggleology/siteswap">siteswap 
+	generating tools</a> can be helpful.</p>
+</details>
+
+<!--details section for forming tricks with these different types of throws-->
+<details>
+	<summary><b>How do we form tricks from these different types of throws?</b></summary><br />
+
+	<p class="basicText">
+		You cannot just randomly string numbers together - there is some logic behind this which is necessary to get correct
+		in order to allow another juggler to decipher the trick and try it out themselves. 
+	</p>
+
+	<div class="row">
+		
+		<!--link to a full example of a siteswap with an image overlay-->
+		<div style="margin: auto;" class="col hoverArea"><a href="javascript: passSiteswap(552)">
+			<img style="margin: 0 auto; width: 60%; height: auto;"
+			src="/static/images/siteswaps/siteswap552.png" class="img-fluid imageToHover" />
+			<div style="" class="overlay">
+				<div class="hoverText">View Siteswap 552</div>
+			</div>
+		</a></div>
+		
+		<div class="col" style="margin: auto;">
+			<p>Place numbers in the <b><i>order in which they are throw</i></b> in the pattern, 
+			<b><i>starting with the largest</i></b> one (highest throw).</p>
+			
+			<p><i><b>Number of Objects = Average of Digits in Sequence</b></i></p>
+			
+			<p>More Balls = More Height, Speed and Strength Required</p>				
+		</div>
+<!--		<div class="col"></div> <!--dummy space to reduce the width of the image overlay-->-->
+		
+	</div><!--end of row-->
+</details>
+
+
+<!--importing jquery and boostrap-->
+<script type="text/javascript" src="/static/JQuery/popper.min.js/"></script>
+<script type="text/javascript" src="/static/JQuery/jquery-3.4.1.min.js/"></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js/"></script>
+
+<script>
+	//when somebody clicks on the link for a particular siteswap number (type of throw), pass to simulator
+	function passSiteswap(siteswapNumber)
+	{
+		window.location.href = '/Juggleology/siteswap?' + siteswapNumber;
+	}
+	
+	//unselect other html "details" sections when a particular one is in focus
+	$('details').click(function (event) {
+		$('details').not(this).removeAttr("open");
+  });
+</script>
+{% endblock %}

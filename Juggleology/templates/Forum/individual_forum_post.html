@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block mainContent %}
+
+<title>Forum - Juggleology</title>
+
+<h2>Forum</h2>
+<input type="button" id="emergencyButton" class="btn btn-success" value="View All Posts" 
+onclick="window.location.href='/Juggleology/forum#bottomOfPage'" /><br />
+
+<!--outputting an individual post after a link has been clicked on in the main forum page -->
+<span id="myIndividualPost"></span><hr />
+
+<!--creating the response form with a button to toggle it-->
+<input type="button" value="Reply" class="btn btn-warning" 
+onclick="$('#respondToForumPost').toggle()" /><p />
+<form id="respondToForumPost" name="frmRespondToPost" onkeypress="return event.keyCode != 13" method="POST">
+{% csrf_token %}
+	
+	<!--forum post comment field-->
+	<div class="form-group">
+		<div class="col">
+			<label for="txtResponseComment">Comment:</label>
+		</div>
+		<div class="col">
+			<textarea name="responseComment" maxlength="400" id="txtResponseComment" 
+			onchange="removeForbidden(this)" class="form-control"></textarea>
+		</div>
+	</div>
+	
+	<!--upload file(s) field-->
+	<div class="form-group">
+		<div class="col">
+			<label for="txtResponseMedia">
+				Upload Media (accepted formats are <i>.jpg, .jpeg, .png</i> and <i>.mp4</i>):
+			</label>
+		</div>
+		<div class="col">
+			<!--add "multiple" attribute for more than one file in a single post-->
+			<input type="file" name="responseMedia" id="txtResponseMedia" 
+			onchange="checkFileExtension(this); validateMediaFileSize(this)" 
+			accept=".jpg, .jpeg, .png, .mp4" class="form-control" />
+		</div>
+	</div>	
+	
+	<!--storing the forum post id here (hidden) so the backend knows which forum post 
+	these responses are associated with-->
+	<input type="hidden" name="responsePostID" id="txtResponsePostID" />
+	
+	<!--add the forum post to database - eventually perform an ajax call-->
+	<div class="form-group"><div class="col">
+		<input type="button" value="Submit Response" onclick="validateResponseSubmission()" class="btn btn-primary" />
+		<br /><br />
+    <b><div id="posting"></div></b> <!--output temporary message in case server is running slow-->
+	</div></div>	
+</form><hr />
+
+<span id="outputForumResponses"></span>
+
+<!--importing jquery and boostrap-->
+<script type="text/javascript" src="/static/JQuery/popper.min.js/"></script>
+<script type="text/javascript" src="/static/JQuery/jquery-3.4.1.min.js/"></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js/"></script>
+
+<script type="text/javascript" src="/static/scripts/validate_input.js/"></script>
+<script type="text/javascript" src="/static/scripts/forum/validate_forum_post_submission.js/"></script>
+<script type="text/javascript" src="/static/scripts/forum/view_individual_post.js/"></script>
+<script type="text/javascript" src="/static/scripts/forum/view_responses.js/"></script>
+<script type="text/javascript" src="/static/scripts/forum/add_response.js/"></script>
+<script type="text/javascript" src="/static/scripts/forum/view_posts.js/"></script>
+<script type="text/javascript" src="/static/scripts/forum/delete_forum_post.js/"></script>
+<script type="text/javascript" src="/static/scripts/forum/delete_forum_response.js/"></script>
+
+{% endblock %}

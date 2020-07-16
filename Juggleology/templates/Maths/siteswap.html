@@ -1,0 +1,137 @@
+{% extends 'base.html' %}{% block mainContent %}
+
+<title>Visual Demo - Juggleology</title>
+
+<h2>Visual Demo</h2>
+<input type="button" id="emergencyButton" class="btn btn-success" value="Extra Information" 
+onclick="window.location.href = '/Juggleology/maths'" /><p />
+
+<div id="siteswapSimulator" class="row">
+	<!--user input to generate specific patterns-->
+	<div id="simulatorForm" class="col">
+		<form id="simulatorFormStyles" name="frmSiteswapSimulator" onkeypress="return event.keyCode != 13">
+		{% csrf_token %}
+		<!--enter the siteswap number-->
+		<div class="form-group">
+			<div class="col">
+				<label for="myPattern">Siteswap Pattern:</label>
+			</div>
+			
+			<!--randomly generated links for pattern examples, separated by # objects-->
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					<a class="nav-link" href="javascript:generateRandomPattern(siteswapPatterns3)">
+						3 Balls
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="javascript:generateRandomPattern(siteswapPatterns4)">
+						4 Balls
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="javascript:generateRandomPattern(siteswapPatterns5)">
+						5 Balls
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="javascript:generateRandomPattern(siteswapPatterns7)">
+						7 Balls
+					</a>
+				</li>
+			</ul>		
+
+			<!--field for manually entering siteswap number-->
+			<div class="col">
+				<input type="text" id="myPattern" name="txtPattern" class="form-control"
+				maxlength="10" onkeypress="numbersOnly(event)" 
+				onchange="if(this.value<1) {this.value=glbSiteswapPattern} else{savePatternCookies()}" required />
+			</div>
+		</div>
+
+		<!--change frame rate using a ranger slider-->		
+		<div class="form-group">
+			<div class="col">
+				<label for="frameRate">Pattern Speed:</label>
+			</div>
+			<div class="col">
+				<input type="range" min="1" max="100" id="frameRate" name="rngFrameRate" 
+				oninput="savePatternCookies()" class="custom-range" />
+			</div>
+		</div>
+
+		<!--decide whether or not to show a trace of each ball travelling through the "air"-->
+		<div class="form-group">
+			<div class="col">
+				<label>Show pattern trace?</label>
+			</div>
+			<div class="col">
+				<span id="patternTraceOptions">
+					<input type="radio" oninput="savePatternCookies()" id="traceYes" name="radShowPatternTrace" value="Yes" /> Yes
+					<input type="radio" oninput="savePatternCookies()" id="traceNo" name="radShowPatternTrace" value="No" /> No			
+				</span>
+			</div>
+		</div>
+			
+		<!--choose which direction assymetrical patterns go in (which "hand" leads)-->
+		<div class="form-group">
+			<div class="col">
+				<label>Choose Hand:</label>
+			</div>
+			<div class="col">
+				<span id="patternTraceOptions">
+					<input type="radio" oninput="savePatternCookies()" id="chooseLeft" name="radChooseHand" value="Left" /> Left
+					<input type="radio" oninput="savePatternCookies()" id="chooseRight" name="radChooseHand" value="Right" /> Right
+				</span>
+			</div>
+		</div>
+
+		<!--buttons for generating new patterns and "resetting" the simulator-->
+		<div class="form-group"><div class="col">
+			<input type="button" class="btn btn-primary" onclick="savePatternCookies()" value="Generate" />
+			<input type="button" class="btn btn-warning" id="resetButton" onclick="resetPattern()" value="Reset" />
+		</div></div>		
+		</form>
+	</div>
+
+	<div id="simulatorCanvas" class="col">
+		
+		<!--output number of objects in the current pattern-->
+		<figcaption id="figNumObjects">	
+			<center /><span id="numObjects"></span>
+		</figcaption>
+		
+		<!--displaying the actual 2d animation-->
+		<canvas name="cnvAnimator" id="myAnimator" width="350" height="350"></canvas>
+		
+		<figcaption id="controlsNearSimulator">
+				<br><center>
+					<!--pause simulator button-->
+					<input type="button" onclick="pauseSimulator()"
+					value="I I" id="pauseSimulatorButton" class="btn btn-info" />
+									
+					<!--resume simulator button-->
+					<input type="button" onclick="resumeSimulator()"
+					value="&#9658;" id="resumeSimulatorButton" class="btn btn-success" />
+				</center></br>
+									
+				<!--range slider for adjusting pattern width and ball size-->
+				<input type="range" min="1" max="30" id="simulatorZoom" name="rngZoom" class="custom-range"
+				oninput="savePatternCookies()" />			
+		</figcaption>
+		
+	</div>
+</div><!--end of siteswapSimulator-->
+
+<!--importing jquery and boostrap-->
+<script type="text/javascript" src="/static/JQuery/jquery-3.4.1.min.js/"></script>
+<script type="text/javascript" src="/static/JQuery/popper.min.js/"></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js/"></script>
+
+<!--linking to javascript for simulator form and animations-->	
+<script type="text/javascript" src="/static/scripts/validate_input.js/"></script>
+<script type="text/javascript" src="/static/scripts/siteswap/siteswap_simulator_form.js/"></script>
+<script type="text/javascript" src="/static/scripts/siteswap/animator.js/"></script>
+<script type="text/javascript" src="/static/scripts/siteswap/generate_siteswap_link.js/"></script>
+
+{% endblock %}
