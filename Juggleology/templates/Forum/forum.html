@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block mainContent %}
 
 <title>Forum - Juggleology</title>
@@ -8,16 +8,16 @@
 
 <form id="postToForum" name="frmPostToForum" onkeypress="return event.keyCode != 13" method="POST">
 {% csrf_token %}
-	
+
 	<!--Post Title field-->
 	<div class="form-group">
 		<div class="col"><label for="txtPostTitle">Post Title:</label></div>
 		<div class="col">
-			<input type="text" name="postTitle" maxlength="200" id="txtPostTitle" 
+			<input type="text" name="postTitle" maxlength="200" id="txtPostTitle"
 			onchange="removeForbidden(this)" class="form-control forumInputs" />
 		</div>
 	</div>
-	
+
 	<!--forum post comment field-->
 	<div class="form-group">
 		<div class="col">
@@ -28,28 +28,28 @@
 			class="form-control forumInputs"></textarea>
 		</div>
 	</div>
-	
+
 	<!--upload file(s) field-->
 	<div class="form-group">
 		<div class="col">
 			<label for="fileMedia">
-				Upload Media (accepted formats are <i>.jpg, .jpeg, .png</i> and <i>.mp4</i>):
+				Upload Media (accepted formats are <i>.jpg, .jpeg</i> and <i>.png</i>):
 			</label>
 		</div>
 		<div class="col">
 			<!--add "multiple" attribute for more than one file in a single post-->
-			<input type="file" name="mediaToUpload" id="fileMedia" 
-			onchange="checkFileExtension(this); validateMediaFileSize(this)" 
-			accept=".jpg, .jpeg, .png, .mp4" class="form-control" />
+			<input type="file" name="mediaToUpload" id="fileMedia"
+			onchange="checkFileExtension(this); validateMediaFileSize(this)"
+			accept=".jpg, .jpeg, .png" class="form-control" />
 		</div>
-	</div>	
-	
+	</div>
+
 	<!--add the forum post to database - eventually perform an ajax call-->
 	<div class="form-group"><div class="col">
 		<input type="button" value="Submit Post" onclick="validateForumPostSubmission()" class="btn btn-primary" />
 		<br /><br />
     <b><div id="posting"></div></b> <!--output temporary message in case server is running slow-->
-	</div></div>	
+	</div></div>
 </form>
 
 <!--fetch all posts from forum and summarise them in a table with links to full post-->
@@ -57,15 +57,19 @@
 
 <span id="bottomOfPage"></span>
 
-<!--importing jquery and boostrap-->
-<script type="text/javascript" src="/static/JQuery/popper.min.js/"></script>
-<script type="text/javascript" src="/static/JQuery/jquery-3.4.1.min.js/"></script>
-<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js/"></script>
+<!--Importing jquery and boostrap-->
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'JQuery/jquery-3.4.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'JQuery/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'JQuery/jquery-1.12.4.js' %}"></script>
+<script type="text/javascript" src="{% static 'JQuery/jquery-ui.js' %}"></script>
 
-<script type="text/javascript" src="/static/scripts/validate_input.js/"></script>
-<script type="text/javascript" src="/static/scripts/forum/view_posts.js/"></script>
-<script type="text/javascript" src="/static/scripts/validate_input.js/"></script>
-<script type="text/javascript" src="/static/scripts/forum/validate_forum_post_submission.js/"></script>
-<script type="text/javascript" src="/static/scripts/forum/add_post.js/"></script>
+<!--importing generic javascript files-->
+<script type="text/javascript" src="{% static 'scripts/standard_ajax_functions.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/validate_input.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'scripts/forum/view_posts.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/forum/validate_forum_post_submission.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/forum/add_post.js' %}"></script>
 
 {% endblock %}

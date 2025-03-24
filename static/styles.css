@@ -5,7 +5,7 @@ body, input, select {font-family: 'Roboto', sans-serif;} /*consistent font famil
 /*styles for dark mode when toggled*/
 [data-theme="dark"] table, [data-theme="dark"]
 {
-	background-color: #2e3436; 
+	background-color: #2e3436;
 	color: #eee;
 }
 [data-theme="dark"] .bg-light {background-color: #333;}
@@ -43,7 +43,7 @@ textarea
 #emergencyButton:hover {background: #00f;}
 
 /*importing an fadeEffect animation from the webkit framework*/
-@-webkit-keyframes fadeEffect 
+@-webkit-keyframes fadeEffect
 {
     from {opacity: 0;}
     to {opacity: 1;}
@@ -51,7 +51,7 @@ textarea
 
 
 /*rules for  reponsive design (when the screen size is 960px or less) - most is being handled by bootstrap*/
-@media screen and (max-width: 961px) 
+@media screen and (max-width: 961px)
 {
 	.responsiveImage
 	{
@@ -61,7 +61,7 @@ textarea
 }
 
 /*styles for the slideshow in the image slider*/
-#imageSlider img 
+#imageSlider img
 {
 	width: 70%;
 	height: 70%;
@@ -69,10 +69,10 @@ textarea
 	border: 5px solid #000;
 }
 /*styles for the buttons in the image slider*/
-#imageSlider>.btn 
+#imageSlider>.btn
 {
 	width: 50px;
-	height: 50px;	
+	height: 50px;
 	border-radius: 15px;
 	font-size: 20px;
 }
@@ -81,16 +81,12 @@ textarea
 
 
 
-
-
-
-
 /***************************************SITESWAP SIMULATOR STYLES***************************************/
 
 /*hovering over images and revealing text --> these have links pointing to other pages/sections*/
 .hoverArea {position: relative; width: auto;}
 .imageToHover {display: block;}
-.overlay 
+.overlay
 {
   position: absolute;
   opacity: 0; /*not visible by default (until hovered over)*/
@@ -102,7 +98,7 @@ textarea
   background-color: #000;
 }
 .hoverArea:hover .overlay {opacity: 0.7;}
-.hoverText 
+.hoverText
 {
   color: #fff;
   font-weight: ;
@@ -116,9 +112,9 @@ textarea
 
 /*styles for labels in simulator form*/
 #simulatorFormStyles label, #patternExamplesTitle {font-weight: bold; color: red;}
-	
+
 /*styles for the canvas in which the animations are displayed and some controls*/
-#myAnimator 
+#myAnimator
 {
 	border: 0px solid #0a0;
 	height: auto;
@@ -162,13 +158,13 @@ textarea
 	position: relative;
 	display: inline-block; /*keep text text aligned with the actual box*/
 	overflow: hidden;
-	
+
 	transition: 0.5s;
-	transition-delay: 0.5s; 
+	transition-delay: 0.5s;
 }
 
 /*the text after the goal has been checked*/
-#goalList li input[type="checkbox"]:checked ~ span.goalListItem 
+#goalList li input[type="checkbox"]:checked ~ span.goalListItem
 {
 	color: #ccc;
 }
@@ -228,7 +224,7 @@ textarea
 	position: absolute;
 	top: -5px;
 	left: 4px;
-	transform: translateY(-100%); 
+	transform: translateY(-100%);
 	transition: 0.5s;
 }
 #goalList li input[type="checkbox"]:checked ~ span.icon:before {transform: translateY(0);}

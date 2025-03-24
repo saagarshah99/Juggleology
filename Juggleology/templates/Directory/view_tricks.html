@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block mainContent %}
 
 <title>Tricks - Juggleology</title>
 <h2>Juggling Trick Directory</h2>
 
-<input type="button" id="emergencyButton" class="btn btn-success" value="Add Trick" 
+<input type="button" id="emergencyButton" class="btn btn-success" value="Add Trick"
 onclick="window.location.href='/Juggleology/add-trick'" /><br /><br />
 
 <!--section containing trick directory with input for data manipulation (handled by js)-->
@@ -15,17 +16,20 @@ onclick="window.location.href='/Juggleology/add-trick'" /><br /><br />
 </div>
 <div id="bottomOfPage"></div>
 
-<!--importing jquery and boostrap-->
-<script type="text/javascript" src="/static/JQuery/popper.min.js/"></script>
-<script type="text/javascript" src="/static/JQuery/jquery-3.4.1.min.js/"></script>
-<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js/"></script>
+<!--Importing jquery and boostrap-->
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'JQuery/jquery-3.4.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'JQuery/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'JQuery/jquery-1.12.4.js' %}"></script>
+<script type="text/javascript" src="{% static 'JQuery/jquery-ui.js' %}"></script>
 
 <!--importing scripts for viewing, editing or deleting tricks, standard ajax and directory form validation-->
-<script type="text/javascript" src="/static/scripts/validate_input.js"></script>
-<script type="text/javascript" src="/static/scripts/trick_directory/validate_directory_forms.js"></script>
-<script type="text/javascript" src="/static/scripts/standard_ajax_functions.js"></script>
-<script type="text/javascript" src="/static/scripts/trick_directory/view_tricks.js"></script>
-<script type="text/javascript" src="/static/scripts/trick_directory/edit_tricks.js"></script>
-<script type="text/javascript" src="/static/scripts/trick_directory/delete_trick.js"></script>
+<script type="text/javascript" src="{% static 'scripts/standard_ajax_functions.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/validate_input.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/trick_directory/add_tricks.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/trick_directory/validate_directory_forms.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/trick_directory/view_tricks.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/trick_directory/edit_tricks.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/trick_directory/delete_trick.js' %}"></script>
 
 {% endblock %}

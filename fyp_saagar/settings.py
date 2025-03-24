@@ -21,13 +21,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-with open('/etc/juggleology_secret_key.txt') as f:
+with open('/home/saagarshah/juggleology_secret_key.txt') as f:
   SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', 'saagarshah.pythonanywhere.com']
 
 
 
@@ -140,10 +140,14 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
+    # os.path.join(BASE_DIR, "core/static"),
     #'/var/www/static/',
 ]
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
+# STATIC_ROOT = '/home/saagarshah/static'
 
 MEDIA_URL = '/Juggleology/media/'
+# MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = '/home/saagarshah/media'

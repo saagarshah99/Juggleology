@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block mainContent %}
 <head><title>Juggleology</title></head>
 
@@ -6,33 +7,28 @@
 
 <!--images slider for homepage-->
 <div id="imageSlider">
-	
+
 	<!--images in the carousel-->
 	<table width="100%">
 		<tr><td colspan="2"><center>
 			<!--https://www.pexels.com/photo/action-adults-celebration-clouds-433452/-->
-			<img class="responsiveImage slides" src="/static/images/juggling_index.jpg" />
-			<img class="responsiveImage slides" src="/static/images/image3.jpg" />
-			<img class="responsiveImage slides" src="/static/images/image4.jpg" />
-			<img class="responsiveImage slides" src="/static/images/image5.jpg" />
-			<img class="responsiveImage slides" src="/static/images/image6.jpg" />
+			<img class="responsiveImage slides" src="{% static 'images/juggling_index.jpg' %}" />
+			<img class="responsiveImage slides" src="{% static 'images/image3.jpg' %}" />
+			<img class="responsiveImage slides" src="{% static 'images/image4.jpg' %}" />
+			<img class="responsiveImage slides" src="{% static 'images/image5.jpg' %}" />
+			<img class="responsiveImage slides" src="{% static 'images/image6.jpg' %}" />
 		<center></td></tr>
 		<tr>
 			<!--previous and next buttons-->
 			<td style="float: left; left: 0;">
-				<button class="btn" onclick="imageSlideToggle(-1)" id="previousButton">&#10094;</button>			
+				<button class="btn" onclick="imageSlideToggle(-1)" id="previousButton">&#10094;</button>
 			</td>
 			<td style="float: right; right: 0;">
-				<button class="btn" onclick="imageSlideToggle(1)" id="nextButton">&#10095;</button>			
+				<button class="btn" onclick="imageSlideToggle(1)" id="nextButton">&#10095;</button>
 			</td>
 		</tr>
-	</table>	
+	</table>
 </div><!--end of image slider-->
 
-<!--importing jquery and boostrap-->
-<script type="text/javascript" src="/static/JQuery/popper.min.js/"></script>
-<script type="text/javascript" src="/static/JQuery/jquery-3.4.1.min.js/"></script>
-<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js/"></script>
-
-<script type="text/javascript" src="/static/scripts/image_slider.js/"></script>
+<script type="text/javascript" src="{% static 'scripts/image_slider.js' %}"></script>
 {% endblock %}

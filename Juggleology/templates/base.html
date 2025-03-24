@@ -1,29 +1,30 @@
-<!--a base template that defines main styles/layout across web app-->
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<noscript>Your browser does not support JavaScript or you have disabled it!</noscript>
-		
+
 		<!--importing bootstrap, external font, stylesheet and tab icon-->
-		<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css/" />	
-		<link rel="stylesheet" type="text/css" href="/static/roberto_font.css/" />		
-		<link rel="stylesheet" type="text/css" href="/static/styles.css/" />
-		<link rel="icon" href="/static/images/juggling_menu_icon.png/" />
-		<link rel="stylesheet" href="/static/JQuery/jquery-ui.css">
-		
+		<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'roberto_font.css' %}">
+	    <link rel="stylesheet" href="{% static 'styles.css' %}">
+		<link rel="icon" href="{% static 'images/juggling_menu_icon.png' %}" />
+		<link rel="stylesheet" href="{% static 'JQuery/jquery-ui.css' %}>
+
 		<!--meta tags for encoding and responsiveness-->
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 	</head>
 	<body>
 		<div id="container">
-			
+
 			<!--responsive navigation menu at the top of the page-->
 			<nav class="navbar navbar-expand-md bg-primary navbar-dark fixed-top" id="menuHeader">
-				
+
 				<!--https://www.iconfinder.com/icons/3108408/circus_juggling_icon-->
 				<a class="navbar-brand" href="/Juggleology">
-					<img src="/static/images/juggling_menu_icon.png" 
+					<img src="{% static 'images/juggling_menu_icon.png' %}"
 					width="30" height="30" class="d-inline-block align-top" />
 					<span id="outputNameOfUser"></span>
 				</a>
@@ -31,23 +32,23 @@
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				
+
 				<!--list containing search bar and the different menu items (links to main pages)-->
-				<div class="collapse navbar-collapse" id="collapsibleNavbar">		  
-					
+				<div class="collapse navbar-collapse" id="collapsibleNavbar">
+
 					<!--search facility - only shown if logged in-->
 					<form class="form-inline" id="searchForm" method="POST" onkeypress="return event.keyCode != 13">
 					{% csrf_token %}
-						
+
 						{% autoescape on %}<div class="ui-widget">
-							<input class="form-control" type="text" name="query" 
+							<input class="form-control" type="text" name="query"
 							onchange="removeForbidden(this)" placeholder="Search" id="searchBox" />
-							<input type="button" onclick="search()" value="&#128269;" 
+							<input type="button" onclick="search()" value="&#128269;"
 							id="searchButton" class="btn btn-success" />
 						</div>{% endautoescape %}
 					</form>
-										
-					<ul class="navbar-nav">					
+
+					<ul class="navbar-nav">
 						<li class="nav-item">
 							<a class="nav-link" id="mathsNav" href="/Juggleology/siteswap">Visualise</a>
 						</li>
@@ -63,7 +64,7 @@
 						<li class="nav-item">
 							<a class="nav-link" id="eventsNav" href="/Juggleology/view-events">Events</a>
 						</li>
-						
+
 						<!--show these depending on if the user is logged in or out-->
 						<li id="loginButton" class="nav-item">
 								<a class="nav-link" href="/Juggleology/login">Login</a>
@@ -77,40 +78,40 @@
 					</ul>
 				</div>
 			</nav><br /><br /><!--end of navigation menu-->
-			
+
 			<!--dark mode switch on each page-->
 			<div style="float: right;" class="custom-control custom-switch">
 				<input type="checkbox" class="custom-control-input" id="darkSwitch">
 				<label class="custom-control-label" for="darkSwitch">Dark Mode</label>
 			</div><p />
-			
+
 			<!--all other pages extend this template to define main content respectively-->
-			<div id="content">				
+			<div id="content">
 				{% autoescape on %}
 					{% block mainContent %}{% endblock %}
 				{% endautoescape %}
 			</div>
-						
+
 		</div><!--end of container-->
-		
+
 		<!--Importing jquery and boostrap-->
-		<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js/"></script>
-		<script type="text/javascript" src="/static/JQuery/jquery-3.4.1.min.js/"></script>
-		<script type="text/javascript" src="/static/JQuery/popper.min.js/"></script>
-	  <script type="text/javascript" src="/static/JQuery/jquery-1.12.4.js"></script>
-		<script type="text/javascript" src="/static/JQuery/jquery-ui.js"></script>
-		
+		<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'JQuery/jquery-3.4.1.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'JQuery/popper.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'JQuery/jquery-1.12.4.js' %}"></script>
+		<script type="text/javascript" src="{% static 'JQuery/jquery-ui.js' %}"></script>
+
 		<!--importing generic javascript files-->
-		<script type="text/javascript" src="/static/scripts/standard_ajax_functions.js/"></script>
-		<script type="text/javascript" src="/static/scripts/dynamic_login_buttons.js/"></script>
-		<script type="text/javascript" src="/static/scripts/searching.js/"></script>
-		<script type="text/javascript" src="/static/scripts/validate_input.js/"></script>		
+		<script type="text/javascript" src="{% static 'scripts/standard_ajax_functions.js' %}"></script>
+		<script type="text/javascript" src="{% static 'scripts/dynamic_login_buttons.js' %}"></script>
+		<script type="text/javascript" src="{% static 'scripts/searching.js' %}"></script>
+		<script type="text/javascript" src="{% static 'scripts/validate_input.js' %}"></script>
 
 		<!--https://github.com/coliff/dark-mode-switch-->
-		<script type="text/javascript" src="/static/scripts/dark-mode-switch.js/"></script>
-		
+		<script type="text/javascript" src="{% static 'scripts/dark-mode-switch.js' %}"></script>
+
 		<!--remove script tags from url if the user tries to enter them into the query string-->
-		<script type="text/javascript">			
+		<script type="text/javascript">
 			var currentURL = window.location.href;
 			if(currentURL.includes("script"))
 			{
