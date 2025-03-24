@@ -1,0 +1,3 @@
+Django
+Pillow
+argon2-cffi  # Use argon2-cffi for compatibility and widespread use
