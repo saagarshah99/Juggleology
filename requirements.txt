@@ -1,3 +1,4 @@
+# Ensure your Python 3.10 environment is active before running "pip install -r requirements.txt" to install the other packages.
 Django
 Pillow
 argon2-cffi  # Use argon2-cffi for compatibility and widespread use
