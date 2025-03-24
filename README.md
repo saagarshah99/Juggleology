@@ -16,7 +16,7 @@ For my undergraduate final year project, I built a social network and portal for
  Forum media, boostrap, jquery, model migration, etc. files have not been included in this repository due to file size constraints. 
  
  Required (in a virtual evironment):
- * Python 3.7
+ * Python 3.10
  * Django
  * Pillow
  * Argon2
