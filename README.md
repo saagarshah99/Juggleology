@@ -20,3 +20,5 @@ For my undergraduate final year project, I built a social network and portal for
  * Django
  * Pillow
  * Argon2
+
+Ensure your Python 3.10 environment is active before running "pip install -r requirements.txt" to install the other packages.
